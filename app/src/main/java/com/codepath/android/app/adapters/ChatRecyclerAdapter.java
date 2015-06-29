@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.codepath.android.app.R;
 import com.codepath.android.app.models.Message;
+import com.codepath.android.app.models.MessageParcelable;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.math.BigInteger;
@@ -18,10 +19,10 @@ import java.util.List;
 public class ChatRecyclerAdapter extends RecyclerView.Adapter<ChatRecyclerAdapter.MessageItemViewHolder>
 {
 
-    private List<Message> messageList;
+    private List<MessageParcelable> messageList;
     private String mUserId;
 
-    public ChatRecyclerAdapter(final List<Message> messages, final String userId)
+    public ChatRecyclerAdapter(final List<MessageParcelable> messages, final String userId)
     {
         this.messageList = messages;
         this.mUserId = userId;
@@ -35,7 +36,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<ChatRecyclerAdapte
 
     @Override
     public void onBindViewHolder(MessageItemViewHolder holder, int position) {
-        Message message = messageList.get(position);
+        MessageParcelable message = messageList.get(position);
 
         final boolean isMe = message.getUserId().equals(mUserId);
         // Show-hide image based on the logged-in user.
@@ -92,12 +93,12 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<ChatRecyclerAdapte
     }
 
     // This method is used to update data for adapter and notify adapter that data has changed
-    public void updateList(List<Message> data) {
+    public void updateList(List<MessageParcelable> data) {
         messageList = data;
         notifyDataSetChanged();
     }
 
-    public void addMessage(Message message)
+    public void addMessage(MessageParcelable message)
     {
         messageList.add(message);
         notifyItemInserted(messageList.size()-1);

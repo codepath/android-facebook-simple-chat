@@ -1,5 +1,7 @@
 package com.codepath.android.app.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
